@@ -47,6 +47,8 @@ export const FormContainer = styled.div`
       background-color: #997af0;
       color: white;
       padding: 1rem 2rem;
+      display:flex;
+      align-items: center;
       border: none;
       font-weight: bold;
       cursor: pointer;
@@ -54,7 +56,9 @@ export const FormContainer = styled.div`
       font-size: 1rem;
       text-transform: uppercase;
       transition: 0.9s ease-in-out;
-
+      Loader{
+        padding:0
+      }
       &:hover {
         background-color: #4e8eff;
       }
