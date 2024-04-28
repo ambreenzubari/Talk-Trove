@@ -110,7 +110,7 @@ function Register() {
           <button type="submit">
           {/* <Loader type="spinner-default" bgColor={color} color={color} title={"spinner-default"} size={100} /> */}
 
-          <Loader type="spinner-default" size={20} bgColor={'#fff'} color={'#fff'}  />
+          {/* <Loader type="spinner-default" size={20} bgColor={'#fff'} color={'#fff'}  /> */}
              Create User</button>
           <span>
             Already have an Account? <Link to="/login"> login</Link>

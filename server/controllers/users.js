@@ -20,11 +20,31 @@ module.exports.register = async (req, res, next) => {
       username,
       password: hashedPassword,
     });
-    console.log("USER", user)
     const token = jwt.sign({ id: user._id }, config.get("jwtPrivateKey"));
     delete user.password;
-    console.log("Tikem",token)
+    return res.json({ status: true, user: user, token: token });
+  } catch (err) {
+    next({ status: false, msg: err.message });
+  }
+};
 
+
+
+module.exports.login = async (req, res, next) => {
+  try {
+    const { email,  password } = req.body;
+ 
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.json({msg:"Invalid email or or password", status:false});
+    }
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return res.json({msg:"Invalid email or or password", status:false});
+    }
+  
+    const token = jwt.sign({ id: user._id }, config.get("jwtPrivateKey"));
+    delete user.password;
     return res.json({ status: true, user: user, token: token });
   } catch (err) {
     next({ status: false, msg: err.message });
