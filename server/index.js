@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const userRoutes = require('./routes/user');
 
 const app = express();
 require('dotenv').config();
@@ -8,12 +9,7 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 
-// mongoose.connect(process.env.MONGO_URI, {
-// }).then(() => {
-//     console.log("DB Connection Successful");
-// }).catch((err) => {
-//     console.log("ERROR while connecting", err);
-// });
+app.use('/api/auth',userRoutes)
 
 mongoose.connect('mongodb://localhost/notes-db-app',{
     family: 4,

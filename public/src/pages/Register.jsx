@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../src/assets/logo.svg";
 import { FormContainer } from "./formContainer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import Loader from "react-js-loader";
+
 import { RegisterRoute } from "../utils/APIRoutes";
 function Register() {
+  const navigate = useNavigate();
   const toastOptions = {
     position: "bottom-right",
     autoClose: 8000,
@@ -14,6 +17,8 @@ function Register() {
     draggable: true,
     theme: "dark",
   };
+  const [loading, setLoading] = useState(false)
+
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -30,6 +35,13 @@ function Register() {
         email,
         password,
       });
+      if (data.status === false) {
+        toast.error(data.msg, toastOptions);
+      } else {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", JSON.stringify(data.token));
+        navigate("/")
+      }
     }
   };
 
@@ -95,7 +107,11 @@ function Register() {
             onChange={(e) => handleChange(e)}
           />
 
-          <button type="submit"> Create User</button>
+          <button type="submit">
+          {/* <Loader type="spinner-default" bgColor={color} color={color} title={"spinner-default"} size={100} /> */}
+
+          <Loader type="spinner-default" size={20} bgColor={'#fff'} color={'#fff'}  />
+             Create User</button>
           <span>
             Already have an Account? <Link to="/login"> login</Link>
           </span>
