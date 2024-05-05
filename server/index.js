@@ -16,7 +16,6 @@ mongoose.connect('mongodb://localhost/notes-db-app',{
 }).then(() => {
         console.log("DB Connection Successful");
     }).catch((err) => {
-        console.log("ERROR while connecting====================== ", err);
     });
     
 
