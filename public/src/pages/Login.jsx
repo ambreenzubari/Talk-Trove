@@ -19,6 +19,12 @@ function Login() {
   };
   const [loading, setLoading] = useState(false);
 
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate("/")
+    }
+  },[])
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -27,7 +33,6 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      console.log("VALID FORM");
       const { password,email } = values;
       const { data } = await axios.post(LoginRoute, {
         email,

@@ -25,6 +25,12 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      navigate("/")
+    }
+  },[])
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
