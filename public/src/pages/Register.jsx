@@ -34,7 +34,6 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      console.log("VALID FORM");
       const { password, confirmPassword, username, email } = values;
       const { data } = await axios.post(RegisterRoute, {
         username,
