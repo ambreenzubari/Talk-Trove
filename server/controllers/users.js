@@ -54,15 +54,33 @@ module.exports.setAvatar = async (req, res, next) => {
     const userId = req.params.id;
     const avatarImage = req.body.avatarImage;
     // Use await to wait for the update operation to complete
-    const userData = await User.findByIdAndUpdate(userId, {
-      isAvatarImageSet: true,
-      avatarImage,
-    }, { new: true }); // Ensure that User.findByIdAndUpdate returns the updated document
+    const userData = await User.findByIdAndUpdate(
+      userId,
+      {
+        isAvatarImageSet: true,
+        avatarImage,
+      },
+      { new: true }
+    ); // Ensure that User.findByIdAndUpdate returns the updated document
     return res.json({
       isSet: userData.isAvatarImageSet,
       image: userData.avatarImage,
-      status: true
+      status: true,
     });
+  } catch (err) {
+    next({ status: false, msg: err.message });
+  }
+};
+
+module.exports.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find({ _id: { $ne: req.params.id } }).select([
+      "email",
+      "username",
+      "avatarImage",
+      "_id"
+    ]);
+    return res.json({status: true, users})
   } catch (err) {
     next({ status: false, msg: err.message });
   }
