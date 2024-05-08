@@ -3,11 +3,13 @@ import { ChatContainer } from "../styles/ChatContainer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { allUsersRoute } from "../utils/APIRoutes";
+import Contacts from "../components/Contacts";
 
 function Chat() {
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentChat, setCurrentChat] = useState(undefined);
 
   useEffect(() => {
     if (!localStorage.getItem("user")) {
@@ -29,13 +31,20 @@ function Chat() {
           setContacts(data.data.users);
         }
       } else {
-        navigate('/setAvatar')
+        navigate("/setAvatar");
       }
     }
   };
+
+  const handleChatChange = (chat) => {
+    setCurrentChat(chat);
+  };
+
   return (
     <ChatContainer>
-      <div className="container"></div>
+      <div className="container">
+        <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
+      </div>
     </ChatContainer>
   );
 }
