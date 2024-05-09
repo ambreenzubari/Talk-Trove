@@ -56,7 +56,7 @@ function Chat() {
         {isLoaded && currentChat === undefined ? (
           <Welcome currentUser={currentUser} />
         ) : (
-          <ChatsComponent />
+          <ChatsComponent currentChat={currentChat} />
         )}
       </div>
     </ChatContainer>
