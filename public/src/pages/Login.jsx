@@ -89,7 +89,7 @@ function Login() {
           <button type="submit">
             {/* <Loader type="spinner-default" bgColor={color} color={color} title={"spinner-default"} size={100} /> */}
             {/* <Loader type="spinner-default" size={20} bgColor={'#fff'} color={'#fff'}  /> */}
-            Create User
+         Login
           </button>
           <span>
             Don't have an Account? <Link to="/register"> Register</Link>
