@@ -1,24 +1,27 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const userRoutes = require('./routes/user');
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const userRoutes = require("./routes/user");
+const messagesRoutes = require("./routes/messages");
 
 const app = express();
-require('dotenv').config();
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/auth',userRoutes)
+app.use("/api/auth", userRoutes);
+app.use("/api/messages", messagesRoutes);
 
-mongoose.connect('mongodb://localhost/notes-db-app',{
+mongoose
+  .connect("mongodb://localhost/notes-db-app", {
     family: 4,
-}).then(() => {
-        console.log("DB Connection Successful");
-    }).catch((err) => {
-    });
-    
+  })
+  .then(() => {
+    console.log("DB Connection Successful");
+  })
+  .catch((err) => {});
 
 const server = app.listen(process.env.PORT, () => {
-    console.log('Listening on port ' + process.env.PORT);
+  console.log("Listening on port " + process.env.PORT);
 });
