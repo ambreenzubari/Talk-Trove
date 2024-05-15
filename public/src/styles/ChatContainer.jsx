@@ -17,7 +17,7 @@ export const ChatContainer = styled.div`
         display:grid;
         grid-template-columns: 25% 75%;
         @media screen and (min-width:720px) and (max-width:1080px){
-            grid-template-columns: 35% 6%;
+            grid-template-columns: 35% 65%;
 
         }
 

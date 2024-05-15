@@ -29,7 +29,7 @@ function Chat() {
   }, [currentUser]);
 
   const fetchUsers = async () => {
-    if (currentUser) {
+    if (currentUser&& currentUser._id) {
       if (currentUser.isAvatarImageSet) {
         const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
         if (data.data.status) {
