@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContactsContainer = styled.div`
   display: grid;
-  grid-template-rows: 10% 75% 15%;
+  grid-template-rows: 8% 77% 15%;
   overflow: hidden;
   background-color: #1e1e1e;
   border-right: 1px solid #2c2c3e;
@@ -19,7 +19,6 @@ export const ContactsContainer = styled.div`
       font-size: 1.5rem;
     }
   }
-
 
   .contacts {
     padding: 1rem;
@@ -71,24 +70,14 @@ export const ContactsContainer = styled.div`
   }
 
   .current-user {
-    background-color: #193038;
     display: flex;
-    margin-top: 10px;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
-    width: 100%;
-    padding: 1rem;
     position: sticky;
+    gap:1rem;
+    margin: 0px;
     bottom: 0; /* Ensuring it stays at the bottom */
     box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow to make it stand out */
-
-    .avatar {
-      img {
-        height: 4rem;
-        border-radius: 50%;
-      }
-    }
 
     .username {
       h2 {
@@ -116,7 +105,7 @@ export const ContactsContainer = styled.div`
 
   .current-user-avatar {
     img {
-      height: 2rem;
+      height: 3rem;
     }
   }
 
@@ -127,27 +116,7 @@ export const ContactsContainer = styled.div`
     }
   }
 
-  @media screen and (min-width: 200px) and (max-width: 730px) {
-    .current-user {
-      align-items: center;
-      text-align: center;
-      flex-wrap: wrap;
-
-      .current-user-avatar {
-        img {
-          height: 2rem;
-        }
-      }
-    }
-    .current-username {
-      h3 {
-        font-size: 1rem;
-      }
-    }
-  }
-
   @media screen and (max-width: 720px) {
-    grid-template-rows: 10% 70% 30%;
     .contacts {
       .contact {
         width: 100%;

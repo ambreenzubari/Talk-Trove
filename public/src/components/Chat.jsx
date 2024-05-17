@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import ChatInput from "./ChatInput";
 import axios from "axios";
 import { getMessageRoute, sendMessageRoute } from "../utils/APIRoutes";
 import { v4 as uuidv4 } from "uuid";
 import { ChatRightContainer } from "../styles/ChatRightContainer";
-
+import Logout from "./Logout";
 const ChatsComponent = ({ currentChat, currentUser, socket }) => {
   const scrollRef = useRef();
   const [messages, setMessages] = useState([]);
@@ -81,10 +80,11 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
                 <h3>{currentChat ? currentChat.username : ""}</h3>
               </div>
             </div>
+            <Logout />
           </div>
           <div className="chat-messages">
-            {messages.map((message) => {
-              return (
+            {messages.length > 0 ? (
+              messages.map((message) => (
                 <div ref={scrollRef} key={uuidv4()}>
                   <div
                     className={`message ${
@@ -96,8 +96,12 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              ))
+            ) : (
+              <div className="no-message">
+                <p>Go ahead and send a message to start chatting! Once you do, you'll be able to see and join the conversation. Don't be shy, say hello and begin the chat!</p>
+              </div>
+            )}
           </div>
           <ChatInput handleSendMessage={handleSendMsg} />
         </ChatRightContainer>

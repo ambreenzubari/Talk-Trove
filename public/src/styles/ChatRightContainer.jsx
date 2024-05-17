@@ -13,7 +13,29 @@ export const ChatRightContainer = styled.div`
   @media screen and (min-width: 400px) and (max-width: 1200px) {
     grid-template-rows: 10% 78% 12%;
   }
+  .no-message {
+    color: #000000; /* Black text for better contrast on yellow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  }
+  
+  .no-message p {
+    font-size: 18px; /* Smaller text size */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 10px; /* Padding for better spacing */
+    text-align: center; /* Center the text */
+    width: 70%;
+    background: #fff8cd; /* Yellow background similar to WhatsApp */
 
+    margin: 0; /* Remove default margin */
+    line-height: 1.2; /* Increase line height for better readability */
+    font-weight: normal; /* Normal font weight */
+  }
+  
+  
   .chat-header {
     width: 100%;
     display: flex;
