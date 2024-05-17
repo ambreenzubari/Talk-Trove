@@ -36,6 +36,3 @@ Technologies Used:
 ![messages2](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/b10b207e-a743-4a73-9874-45af48a290e7)
 
 
-Contributing:!
-
-Contributions are welcome! Feel free to open an issue or submit a pull request.
