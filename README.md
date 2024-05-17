@@ -1,45 +1,31 @@
-usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
-           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
-           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
-           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
-           [--super-prefix=<path>] [--config-env=<name>=<envvar>]
-           <command> [<args>]
+Talk Trove is a MERN (MongoDB, Express.js, React.js, Node.js) stack application for real-time chatting. It allows users to create accounts, set avatars, and engage in chat conversations with other users.
 
-These are common Git commands used in various situations:
+Features:
+           - User authentication using JWT tokens
+           - Real-time chat functionality using socket.io
+           - User can set their avatar using the Multiavatar API
+           - Styled components for UI styling
+           - React Icons for iconography
+Usage:
+           - Register for an account and set your avatar.
+           - Explore the chat screen to see all users.
+           - Click on a user to start a chat conversation.
+Technologies Used:
+           - MongoDB: Database for storing user information
+           - Express.js: Server-side framework for handling API requests
+           - React.js: Frontend library for building the user interface
+           - Node.js: JavaScript runtime environment for running the server
+           - Socket.io: Real-time bidirectional event-based communication
+           - JWT Token: JSON Web Token for user authentication
+           - Multiavatar API: API for generating unique avatars
+           ![welcome screen](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/eb3c201e-acc0-4857-9571-cf15fac4d065)
+![signup](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/906ae7f4-e150-4313-bfa4-8335ec0d3c99)
+![login](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/7689e018-8830-4659-aebb-4c8ab7e68f93)
+![setAvatar](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/eb1d35fe-903c-4749-b9c9-091d06419872)
+![noMessage](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/e511ba2b-2bc2-488f-9679-7788b1796ecf)
 
-start a working area (see also: git help tutorial)
-   clone     Clone a repository into a new directory
-   init      Create an empty Git repository or reinitialize an existing one
+           ![messages2](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/be0e0ba2-5a49-4abf-923e-142209139ebe)
 
-work on the current change (see also: git help everyday)
-   add       Add file contents to the index
-   mv        Move or rename a file, a directory, or a symlink
-   restore   Restore working tree files
-   rm        Remove files from the working tree and from the index
+Contributing:!
 
-examine the history and state (see also: git help revisions)
-   bisect    Use binary search to find the commit that introduced a bug
-   diff      Show changes between commits, commit and working tree, etc
-   grep      Print lines matching a pattern
-   log       Show commit logs
-   show      Show various types of objects
-   status    Show the working tree status
-
-grow, mark and tweak your common history
-   branch    List, create, or delete branches
-   commit    Record changes to the repository
-   merge     Join two or more development histories together
-   rebase    Reapply commits on top of another base tip
-   reset     Reset current HEAD to the specified state
-   switch    Switch branches
-   tag       Create, list, delete or verify a tag object signed with GPG
-
-collaborate (see also: git help workflows)
-   fetch     Download objects and refs from another repository
-   pull      Fetch from and integrate with another repository or a local branch
-   push      Update remote refs along with associated objects
-
-'git help -a' and 'git help -g' list available subcommands and some
-concept guides. See 'git help <command>' or 'git help <concept>'
-to read about a specific subcommand or concept.
-See 'git help git' for an overview of the system.
+Contributions are welcome! Feel free to open an issue or submit a pull request.
