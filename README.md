@@ -24,8 +24,8 @@ Technologies Used:
 ![setAvatar](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/eb1d35fe-903c-4749-b9c9-091d06419872)
 ![welcome screen](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/eb3c201e-acc0-4857-9571-cf15fac4d065)
 ![noMessage](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/e511ba2b-2bc2-488f-9679-7788b1796ecf)
+![messages2](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/b10b207e-a743-4a73-9874-45af48a290e7)
 
-           ![messages2](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/be0e0ba2-5a49-4abf-923e-142209139ebe)
 
 Contributing:!
 
