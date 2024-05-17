@@ -2,23 +2,35 @@ Talk Trove is a MERN (MongoDB, Express.js, React.js, Node.js) stack application 
 
 Features:
            - User authentication using JWT tokens
+           
            - Real-time chat functionality using socket.io
+           
            - User can set their avatar using the Multiavatar API
+           
            - Styled components for UI styling
+           
            - React Icons for iconography
            
 Usage:
            - Register for an account and set your avatar.
+           
            - Explore the chat screen to see all users.
+           
            - Click on a user to start a chat conversation.
 
 Technologies Used:
            - MongoDB: Database for storing user information
+           
            - Express.js: Server-side framework for handling API requests
+           
            - React.js: Frontend library for building the user interface
+           
            - Node.js: JavaScript runtime environment for running the server
+           
            - Socket.io: Real-time bidirectional event-based communication
+           
            - JWT Token: JSON Web Token for user authentication
+           
            - Multiavatar API: API for generating unique avatars
            
 ![signup](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/906ae7f4-e150-4313-bfa4-8335ec0d3c99)
