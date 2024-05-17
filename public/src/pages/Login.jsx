@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../src/assets/logo.svg";
-import { FormContainer } from "./formContainer";
+import Logo from "../../src/assets/logo.png";
+import { FormContainer } from "../styles/formContainer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import Loader from "react-js-loader";
-
 import { LoginRoute } from "../utils/APIRoutes";
+import Loader from "react-js-loader";
 function Login() {
   const navigate = useNavigate();
   const toastOptions = {
@@ -19,28 +18,31 @@ function Login() {
   };
   const [loading, setLoading] = useState(false);
 
-
-  useEffect(()=>{
-    if(localStorage.getItem('token')){
-      navigate("/")
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
     }
-  },[])
+  }, []);
+
   const [values, setValues] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
   });
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      const { password,email } = values;
+      const { password, email } = values;
+      setLoading(true);
       const { data } = await axios.post(LoginRoute, {
         email,
         password,
       });
       if (data.status === false) {
+        setLoading(false);
         toast.error(data.msg, toastOptions);
       } else {
+        setLoading(false);
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", JSON.stringify(data.token));
         navigate("/");
@@ -55,21 +57,23 @@ function Login() {
       return false;
     }
     if (password === "") {
-      toast.error("Email is required", toastOptions);
+      toast.error("Password is required", toastOptions);
       return false;
     }
     return true;
   };
+
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
+
   return (
     <>
       <FormContainer>
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src={Logo} alt="Logo" />
-            <h1>Chat Spark</h1>
+            <h1>Talk Trove</h1>
           </div>
 
           <input
@@ -87,9 +91,13 @@ function Login() {
           />
 
           <button type="submit">
-            {/* <Loader type="spinner-default" bgColor={color} color={color} title={"spinner-default"} size={100} /> */}
-            {/* <Loader type="spinner-default" size={20} bgColor={'#fff'} color={'#fff'}  /> */}
-            Create User
+            {loading ? (
+              <div className="loader">
+                <Loader type="spinner-default" bgColor={"#fff"} color={"#fff"} size={20} />
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
           <span>
             Don't have an Account? <Link to="/register"> Register</Link>
@@ -97,7 +105,7 @@ function Login() {
         </form>
       </FormContainer>
 
-      <ToastContainer></ToastContainer>
+      <ToastContainer />
     </>
   );
 }

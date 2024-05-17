@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../src/assets/logo.svg";
-import { FormContainer } from "./formContainer";
+import Logo from "../../src/assets/logo.png";
+import { FormContainer } from "../styles/formContainer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
@@ -17,7 +17,7 @@ function Register() {
     draggable: true,
     theme: "dark",
   };
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [values, setValues] = useState({
     username: "",
@@ -26,27 +26,29 @@ function Register() {
     confirmPassword: "",
   });
 
-  useEffect(()=>{
-    if(localStorage.getItem('token')){
-      navigate("/")
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
     }
-  },[])
+  }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
-      console.log("VALID FORM");
       const { password, confirmPassword, username, email } = values;
+      setLoading(true);
       const { data } = await axios.post(RegisterRoute, {
         username,
         email,
         password,
       });
       if (data.status === false) {
+        setLoading(false);
         toast.error(data.msg, toastOptions);
       } else {
+        setLoading(false);
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", JSON.stringify(data.token));
-        navigate("/")
+        navigate("/");
       }
     }
   };
@@ -83,7 +85,7 @@ function Register() {
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className="brand">
             <img src={Logo} alt="Logo" />
-            <h1>Chat Spark</h1>
+            <h1>Talk Trove</h1>
           </div>
           <input
             type="text"
@@ -114,10 +116,19 @@ function Register() {
           />
 
           <button type="submit">
-          {/* <Loader type="spinner-default" bgColor={color} color={color} title={"spinner-default"} size={100} /> */}
-
-          {/* <Loader type="spinner-default" size={20} bgColor={'#fff'} color={'#fff'}  /> */}
-             Create User</button>
+            {loading ? (
+              <div className="loader">
+                <Loader
+                  type="spinner-default"
+                  bgColor={"#fff"}
+                  color={"#fff"}
+                  size={20}
+                />
+              </div>
+            ) : (
+              "Create User"
+            )}
+          </button>
           <span>
             Already have an Account? <Link to="/login"> login</Link>
           </span>
