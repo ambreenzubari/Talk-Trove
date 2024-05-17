@@ -1,70 +1,56 @@
 import React, { useState, useEffect } from "react";
-import {ContactsContainer} from "../styles/ContactsContainer"
-import Logo from "../../src/assets/logo.svg";
+import { ContactsContainer } from "../styles/ContactsContainer";
+import Logo from "../../src/assets/logo.png";
+import Logout from "./Logout";
 
-const Contacts = ({ contacts, currentUser , changeChat}) => {
-  const [currentUserName, setCurrentUserName] = useState(undefined);
-  const [currentUserImage, setCurrentUserImage] = useState(undefined);
+const Contacts = ({ contacts, currentUser, changeChat }) => {
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
-  useEffect(() => {
-    if (currentUser) {
-      setCurrentUserName(currentUser.username);
-      setCurrentUserImage(currentUser.avatarImage);
-    }
-  }, [currentUser]);
-
   const changeCurrentChat = (index, contact) => {
-    setCurrentSelected(index)
-    changeChat(contact)
+    setCurrentSelected(index);
+    changeChat(contact);
   };
+
   return (
     <>
-      {currentUserImage && currentUserName && (
+      {currentUser && (
         <ContactsContainer>
           <div className="brand">
             <img src={Logo} alt="logo" />
-            <h3>Snappy</h3>
+            <h3>TalkTrove</h3>
           </div>
 
           <div className="contacts">
-            {contacts.map((contact, index) => {
-              return (
-                <div
-                  className={`contact ${
-                    index == currentSelected ? "selected" : ""
-                  }`}
-                  key={index}
-                  onClick={()=>changeCurrentChat(index, contact)}
-                >
-                  <div className="avatar">
-                    <img
-                      src={`data:image/svg+xml;base64,${contact.avatarImage}`}
-                      alt="avatar"
-                    />
-                  </div>
-
-                  <div className="username">
-                    <h3>{contact.username}</h3>
-                  </div>
+            {contacts.map((contact, index) => (
+              <div
+                className={`contact ${index === currentSelected ? "selected" : ""}`}
+                key={index}
+                onClick={() => changeCurrentChat(index, contact)}
+              >
+                <div className="avatar">
+                  <img
+                    src={`data:image/svg+xml;base64,${contact.avatarImage}`}
+                    alt="avatar"
+                  />
                 </div>
-              );
-            })}
-
-
+                <div className="username">
+                  <h3>{contact.username}</h3>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="current-user">
-            <div className="avatar">
+            <div className="current-user-avatar">
               <img
-                src={`data:image/svg+xml;base64,${currentUserImage}`}
+                src={`data:image/svg+xml;base64,${currentUser.avatarImage}`}
                 alt="avatar"
               />
             </div>
-
-            <div className="username">
-              <h2>{currentUserName}</h2>
+            <div className="current-username">
+              <h3>{currentUser.username}</h3>
             </div>
+            <Logout />
           </div>
         </ContactsContainer>
       )}

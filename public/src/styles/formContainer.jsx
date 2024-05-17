@@ -8,17 +8,18 @@ export const FormContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   align-items: center;
-  background-color: #131324;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dark background gradient */
   .brand {
     display: flex;
     align-items: center;
     gap: 1rem;
     justify-content: center;
     img {
-      height: 5rem;
+      height: 4rem;
     }
     h1 {
-      color: white;
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
       text-transform: uppercase;
     }
   }
@@ -26,50 +27,53 @@ export const FormContainer = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    background-color: #00000076;
-    border-radius: 2rem;
-    padding: 3rem 5rem;
+    gap: 1.5rem;
+    background-color: #1c1c1c; /* Dark card color */
+    border-radius: 1rem;
+    padding: 3rem 4rem;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    
     input {
-      background-color: transparent;
-      padding: 1rem;
-      border: 0.1rem solid #4e0eff;
-      border-radius: 0.4rem;
-      color: white;
+      background-color: #333333; /* Darker input field color */
+      padding: 0.8rem;
+      border: none;
+      border-radius: 0.5rem;
+      color: #ffffff;
       width: 100%;
       font-size: 1rem;
+      transition: all 0.3s ease;
       &:focus {
-        border: 0.1rem solid #9971f0;
+        border: 0.1rem solid #4e8eff; /* Light border on focus */
         outline: none;
       }
     }
+
     button {
-      background-color: #997af0;
-      color: white;
-      padding: 1rem 2rem;
-      display:flex;
-      align-items: center;
+      background-color: #4e8eff; /* Button color */
+      color: #ffffff;
+      padding: 1rem 0;
       border: none;
       font-weight: bold;
       cursor: pointer;
-      border-radius: 0.4rem;
+      border-radius: 0.5rem;
       font-size: 1rem;
       text-transform: uppercase;
-      transition: 0.9s ease-in-out;
-      Loader{
-        padding:0
-      }
+      transition: background-color 0.3s ease;
       &:hover {
-        background-color: #4e8eff;
+        background-color: #2173A5; /* Darker button on hover */
       }
     }
+
     span {
-      color: white;
+      color: #ffffff;
       text-transform: uppercase;
       a {
         color: #4e8eff;
         text-decoration: none;
         font-weight: 600;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

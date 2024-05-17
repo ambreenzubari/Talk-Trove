@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import loader from "../../src/assets/loader.gif";
+import loader from "../../src/assets/load.gif";
 import { AvatarContainer } from "../styles/AvatarContainer";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -47,7 +47,7 @@ export default function SetAvatar() {
     let user = JSON.parse(localStorage.getItem("user"));
     if (localStorage.getItem("token") && user.isAvatarImageSet) {
       navigate("/");
-    }else if(!localStorage.getItem("token") ){
+    } else if (!localStorage.getItem("token")) {
       navigate("/login");
     }
   }, []);
@@ -89,7 +89,7 @@ export default function SetAvatar() {
       ) : (
         <AvatarContainer>
           <div className="title-container">
-            <h1>Pick an avatar as your profile picture</h1>
+            <h1>Choose an avatar for your profile picture</h1>
           </div>
 
           <div className="avatars">

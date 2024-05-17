@@ -9,7 +9,7 @@ const Welcome = ({ currentUser }) => {
       <h1>
         Welcome, <span>{currentUser?currentUser.username:''}!</span>
       </h1>
-      <h3>Please Select Chat to start Communication</h3>
+      <h3>Please select "Chat" to start communication</h3>
     </WelcomeContainer>
   );
 };
