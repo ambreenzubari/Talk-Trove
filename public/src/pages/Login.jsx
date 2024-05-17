@@ -5,10 +5,8 @@ import { FormContainer } from "../styles/formContainer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-
 import { LoginRoute } from "../utils/APIRoutes";
 import Loader from "react-js-loader";
-
 function Login() {
   const navigate = useNavigate();
   const toastOptions = {
@@ -93,7 +91,13 @@ function Login() {
           />
 
           <button type="submit">
-            {loading ? <Loader type="spinner-default" bgColor={"#fff"} color={"#fff"} size={20} /> : "Login"}
+            {loading ? (
+              <div className="loader">
+                <Loader type="spinner-default" bgColor={"#fff"} color={"#fff"} size={20} />
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
           <span>
             Don't have an Account? <Link to="/register"> Register</Link>

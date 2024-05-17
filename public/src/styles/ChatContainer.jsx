@@ -11,8 +11,8 @@ export const ChatContainer = styled.div`
   gap: 1rem;
 
   .container {
-    height: 85vh;
-    width: 85vw;
+    height: 90vh;
+    width: 90vw;
     background-color: rgba(0, 0, 0, 0.7);
     display: grid;
     grid-template-columns: 25% 75%;

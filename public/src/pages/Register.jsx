@@ -17,7 +17,7 @@ function Register() {
     draggable: true,
     theme: "dark",
   };
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const [values, setValues] = useState({
     username: "",
@@ -26,26 +26,29 @@ function Register() {
     confirmPassword: "",
   });
 
-  useEffect(()=>{
-    if(localStorage.getItem('token')){
-      navigate("/")
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/");
     }
-  },[])
+  }, []);
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
       const { password, confirmPassword, username, email } = values;
+      setLoading(true);
       const { data } = await axios.post(RegisterRoute, {
         username,
         email,
         password,
       });
       if (data.status === false) {
+        setLoading(false);
         toast.error(data.msg, toastOptions);
       } else {
+        setLoading(false);
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", JSON.stringify(data.token));
-        navigate("/")
+        navigate("/");
       }
     }
   };
@@ -113,10 +116,19 @@ function Register() {
           />
 
           <button type="submit">
-          {/* <Loader type="spinner-default" bgColor={color} color={color} title={"spinner-default"} size={100} /> */}
-
-          {/* <Loader type="spinner-default" size={20} bgColor={'#fff'} color={'#fff'}  /> */}
-             Create User</button>
+            {loading ? (
+              <div className="loader">
+                <Loader
+                  type="spinner-default"
+                  bgColor={"#fff"}
+                  color={"#fff"}
+                  size={20}
+                />
+              </div>
+            ) : (
+              "Create User"
+            )}
+          </button>
           <span>
             Already have an Account? <Link to="/login"> login</Link>
           </span>

@@ -20,6 +20,7 @@ export const ContactsContainer = styled.div`
     }
   }
 
+
   .contacts {
     padding: 1rem;
     display: flex;
@@ -146,6 +147,7 @@ export const ContactsContainer = styled.div`
   }
 
   @media screen and (max-width: 720px) {
+    grid-template-rows: 10% 70% 30%;
     .contacts {
       .contact {
         width: 100%;

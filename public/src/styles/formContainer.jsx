@@ -9,6 +9,7 @@ export const FormContainer = styled.div`
   gap: 1rem;
   align-items: center;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dark background gradient */
+  
   .brand {
     display: flex;
     align-items: center;
@@ -32,7 +33,7 @@ export const FormContainer = styled.div`
     border-radius: 1rem;
     padding: 3rem 4rem;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
-    
+
     input {
       background-color: #333333; /* Darker input field color */
       padding: 0.8rem;
@@ -59,8 +60,20 @@ export const FormContainer = styled.div`
       font-size: 1rem;
       text-transform: uppercase;
       transition: background-color 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px; /* Fixed height for the button */
+
       &:hover {
         background-color: #2173A5; /* Darker button on hover */
+      }
+
+      .loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
       }
     }
 
