@@ -1,12 +1,28 @@
 import styled from "styled-components";
 
 export const ContactsContainer = styled.div`
-  display: grid;
-  grid-template-rows: 8% 77% 15%;
   overflow: hidden;
   background-color: #1e1e1e;
   border-right: 1px solid #2c2c3e;
+  .searchContainer{
+    padding: 0.5em;
+  }
+  .search-input {
+    background-color: #333333; /* Darker input field color */
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    color: #ffffff;
+    width: 100%;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    &:focus {
+      border: 0.1rem solid #4e8eff; /* Light border on focus */
+      outline: none;
+    }
+  }
   .brand {
+    margin-top:1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,12 +37,15 @@ export const ContactsContainer = styled.div`
   }
 
   .contacts {
-    padding: 1rem;
+    height:100%;
+    padding-right: 0.5rem;
+    padding-bottom:120px;
+    padding-left: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    gap: 0.8rem;
+    gap: 0.5rem;
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
@@ -37,13 +56,11 @@ export const ContactsContainer = styled.div`
     }
     .contact {
       background-color: #2a2a40;
-      min-height: 5rem;
-      width: 90%;
+      width: 100%;
       cursor: pointer;
       border-radius: 0.2rem;
-      padding-top: 0.2rem;
-      padding-bottom: 0.2rem;
-
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
       padding-left: 0.4rem;
       padding-right: 0.4rem;
       gap: 1rem;
@@ -52,13 +69,14 @@ export const ContactsContainer = styled.div`
       transition: 0.5s ease-in-out;
       .avatar {
         img {
-          height: 3rem;
+          height: 2.6rem;
         }
       }
 
       .username {
         h3 {
-          font-size: 1rem;
+          font-weight: 500;
+          font-size: 1em;
           color: white;
         }
       }
@@ -72,13 +90,15 @@ export const ContactsContainer = styled.div`
   .current-user {
     display: flex;
     align-items: center;
-    justify-content: center;
-    position: sticky;
-    gap:1rem;
+    margin-top: 15px;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 1rem;
     margin: 0px;
-    bottom: 0; /* Ensuring it stays at the bottom */
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow to make it stand out */
-
+    bottom: 0;
+    padding-right: 1rem;
+    padding-top: 0.9rem;
+}
     .username {
       h2 {
         color: white;
@@ -104,18 +124,30 @@ export const ContactsContainer = styled.div`
   }
 
   .current-user-avatar {
+    width: 20%;
     img {
-      height: 3rem;
+
+      height: 2rem;
     }
   }
 
   .current-username {
+    width: 60%;
     h3 {
       color: white;
       font-size: 1rem;
+      width: 60%;
+      font-size: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
+  .logout{
+    display: flex;
+    justify-content: end;  
+   width:20%;
+  }
   @media screen and (max-width: 720px) {
     .contacts {
       .contact {

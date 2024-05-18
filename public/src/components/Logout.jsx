@@ -13,7 +13,6 @@ const Logout = () => {
   return (
     <LogoutContainer onClick={handleClick}>
       <BiLogOut className="icon"/>
-      <p>Logout</p>
     </LogoutContainer>
   );
 };
