@@ -6,10 +6,14 @@ const messagesRoutes = require("./routes/messages");
 const socket = require("socket.io");
 const app = express();
 require("dotenv").config();
+const config = require("config");
 
 app.use(cors());
 app.use(express.json());
-
+if (!config.get("jwtPrivateKey")) {
+  console.error("FATAL ERROR: JwtPrivateKey is not defined");
+  process.exit(1);
+}
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messagesRoutes);
 

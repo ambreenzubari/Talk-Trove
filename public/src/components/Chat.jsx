@@ -16,9 +16,17 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
 
   const getMessages = async () => {
     if (currentUser && currentChat) {
+      let token = localStorage.getItem("token");
+
       const response = await axios.post(getMessageRoute, {
         from: currentUser._id,
         to: currentChat._id,
+      },
+      {
+        headers: {
+          "x-auth-token": token,
+          "Content-Type": "application/json",
+        },
       });
       setMessages(response.data);
     }
@@ -26,11 +34,21 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
 
   const handleSendMsg = async (msg) => {
     if (msg.length > 0) {
-      await axios.post(sendMessageRoute, {
-        from: currentUser._id,
-        to: currentChat._id,
-        message: msg,
-      });
+      let token = localStorage.getItem("token");
+      await axios.post(
+        sendMessageRoute,
+        {
+          from: currentUser._id,
+          to: currentChat._id,
+          message: msg,
+        },
+        {
+          headers: {
+            "x-auth-token": token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       socket.current.emit("send-msg", {
         to: currentChat._id,
         from: currentUser._id,
@@ -99,7 +117,11 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
               ))
             ) : (
               <div className="no-message">
-                <p>Go ahead and send a message to start chatting! Once you do, you'll be able to see and join the conversation. Don't be shy, say hello and begin the chat!</p>
+                <p>
+                  Go ahead and send a message to start chatting! Once you do,
+                  you'll be able to see and join the conversation. Don't be shy,
+                  say hello and begin the chat!
+                </p>
               </div>
             )}
           </div>

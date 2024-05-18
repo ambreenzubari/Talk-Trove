@@ -44,7 +44,7 @@ function Login() {
       } else {
         setLoading(false);
         localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("token", JSON.stringify(data.token));
+        localStorage.setItem("token", data.token);
         navigate("/");
       }
     }
