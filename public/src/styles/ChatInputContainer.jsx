@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const ChatInputContainer = styled.div`
   display: grid;
+  margin:0px;
   align-items: center;
   grid-template-columns: 5% 95%;
-  background-color: #080420;
+  background-color: #1E1E1E;
   padding: 0 2rem;
- 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
   @media screen and (min-width: 400px) and (max-width: 1080px) {
     padding: 0 1rem;
     gap: 1rem;

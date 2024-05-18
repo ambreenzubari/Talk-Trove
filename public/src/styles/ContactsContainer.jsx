@@ -49,13 +49,13 @@ export const ContactsContainer = styled.div`
     &::-webkit-scrollbar {
       width: 0.2rem;
       &-thumb {
-        background-color: #ffffff39;
+        background-color: #4C4C4C;
         width: 0.1rem;
         border-radius: 1rem;
       }
     }
     .contact {
-      background-color: #2a2a40;
+      background-color: #4C4C4C;
       width: 100%;
       cursor: pointer;
       border-radius: 0.2rem;

@@ -22,10 +22,10 @@ export const ChatRightContainer = styled.div`
   }
   
   .no-message p {
-    font-size: 18px; /* Smaller text size */
+    font-size: 12px; /* Smaller text size */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 10px; /* Padding for better spacing */
+    padding: 4px; /* Padding for better spacing */
     text-align: center; /* Center the text */
     width: 70%;
     background: #fff8cd; /* Yellow background similar to WhatsApp */
@@ -42,7 +42,7 @@ export const ChatRightContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #1E1E1E;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
     .user-details {
@@ -60,7 +60,7 @@ export const ChatRightContainer = styled.div`
       .username {
         h3 {
           color: white;
-          font-size: 1.5rem;
+          font-size: 16px;
         }
       }
     }
@@ -93,7 +93,7 @@ export const ChatRightContainer = styled.div`
         font-size: 1.1rem;
         border-radius: 1rem;
         color: #d1d1d1;
-        background-color: rgba(255, 255, 255, 0.1);
+        
 
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;
@@ -106,7 +106,7 @@ export const ChatRightContainer = styled.div`
     justify-content: flex-end;
 
     .content {
-      background-color: #4f04ff21;
+      background-color: #4c4c4c;
     }
   }
 

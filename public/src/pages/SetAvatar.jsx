@@ -7,6 +7,7 @@ import axios from "axios";
 import { Buffer } from "buffer";
 import { setAvatarRoute } from "../utils/APIRoutes";
 import "react-toastify/dist/ReactToastify.css";
+import styled from "styled-components";
 
 export default function SetAvatar() {
   const toastOptions = {
@@ -20,7 +21,6 @@ export default function SetAvatar() {
   const [isLoading, setLoading] = useState(true);
   const [selectedAvatar, setSelectedAvatar] = useState(undefined);
 
-  // const api = "https://api.multiavatar.com/3423423423?apiKey=sqPFgvUweONhTl";
   const api = "https://api.multiavatar.com";
 
   const navigate = useNavigate();
@@ -43,6 +43,7 @@ export default function SetAvatar() {
       }
     }
   };
+
   useEffect(() => {
     let user = JSON.parse(localStorage.getItem("user"));
     if (localStorage.getItem("token") && user.isAvatarImageSet) {
@@ -51,15 +52,16 @@ export default function SetAvatar() {
       navigate("/login");
     }
   }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = [];
-      const apiKey = "sqPFgvUweONhTl"; // Replace YOUR_API_KEY with your actual API key
-      const getRandomId = () => Math.floor(Math.random() * 1000000000); // Generate a random ID
+      const apiKey = "sqPFgvUweONhTl";
+      const getRandomId = () => Math.floor(Math.random() * 1000000000);
 
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 10; i++) {
         const id = getRandomId();
-        const url = `${api}/${id}?apiKey=sqPFgvUweONhTl`;
+        const url = `${api}/${id}?apiKey=${apiKey}`;
         try {
           const response = await axios.get(url, {
             responseType: "arraybuffer",
@@ -97,17 +99,17 @@ export default function SetAvatar() {
               return (
                 <div
                   key={index}
-                  className={`avatar  ${
+                  className={`avatar ${
                     selectedAvatar === index ? "selected" : ""
                   }`}
+                  onClick={() => setSelectedAvatar(index)}
                 >
-                  <img
-                    src={`data:image/svg+xml;base64,${avatar}`}
-                    alt="avatar"
-                    onClick={() => {
-                      setSelectedAvatar(index);
-                    }}
-                  />
+                  <div className="avatar-card">
+                    <img
+                      src={`data:image/svg+xml;base64,${avatar}`}
+                      alt="avatar"
+                    />
+                  </div>
                 </div>
               );
             })}
