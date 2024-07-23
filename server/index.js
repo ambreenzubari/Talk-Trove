@@ -18,13 +18,15 @@ app.use("/api/auth", userRoutes);
 app.use("/api/messages", messagesRoutes);
 
 mongoose
-  .connect("mongodb://localhost/notes-db-app", {
-    family: 4,
-  })
+  .connect("mongodb://localhost/notes-db-app",
+    { family: 4 },
+  )
   .then(() => {
     console.log("DB Connection Successful");
   })
-  .catch((err) => {});
+  .catch((err) => {
+    console.log("ERROR", err)
+  });
 
 const server = app.listen(process.env.PORT, () => {
   console.log("Listening on port " + process.env.PORT);
