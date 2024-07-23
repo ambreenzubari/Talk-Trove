@@ -33,6 +33,6 @@ Technologies Used:
            
            - Multiavatar API: API for generating unique avatars
            
-![messages2](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/b10b207e-a743-4a73-9874-45af48a290e7)
+![messages](https://github.com/ambreenzubari/Talk-Trove/assets/80945249/fffe10a9-84d6-40e8-95c5-4f87369d2048)
 
 
