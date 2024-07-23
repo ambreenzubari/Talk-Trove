@@ -35,6 +35,9 @@ export const ContactsContainer = styled.div`
       font-size: 1.5rem;
     }
   }
+ .current-user-avatar img{
+   border-radius: 50%;
+ } 
 
   .contacts {
     height:100%;
