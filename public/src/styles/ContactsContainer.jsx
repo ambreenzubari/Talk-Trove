@@ -29,6 +29,7 @@ export const ContactsContainer = styled.div`
     gap: 1rem;
     img {
       height: 2rem;
+      width:2rem
     }
     h3 {
       color: #997af0;
@@ -131,6 +132,9 @@ export const ContactsContainer = styled.div`
     img {
 
       height: 2rem;
+      width: 2rem;
+                  object-fit: cover
+
     }
   }
 
@@ -161,6 +165,8 @@ export const ContactsContainer = styled.div`
         .avatar {
           img {
             height: 2rem;
+                  width: 2rem;
+            object-fit: cover
           }
         }
         .username {

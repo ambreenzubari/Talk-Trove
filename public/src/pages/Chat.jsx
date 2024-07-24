@@ -40,7 +40,6 @@ function Chat() {
     if (currentUser && currentUser._id) {
       if (currentUser.isAvatarImageSet) {
         let token = localStorage.getItem("token");
-        console.log("Token", token);
         const data = await axios.get(`${allUsersRoute}/${currentUser._id}`, {
           headers: {
             "x-auth-token": token,

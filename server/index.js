@@ -3,17 +3,27 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const messagesRoutes = require("./routes/messages");
+const uploadRoutes= require("./routes/upload")
 const socket = require("socket.io");
 const app = express();
 require("dotenv").config();
 const config = require("config");
+var admin = require("firebase-admin");
 
+var serviceAccount = require("./service_key.json");
+
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   storageBucket: 'talk-trove-aa698.appspot.com'
+// });
 app.use(cors());
 app.use(express.json());
 if (!config.get("jwtPrivateKey")) {
   console.error("FATAL ERROR: JwtPrivateKey is not defined");
   process.exit(1);
 }
+
+app.use("/api/files", uploadRoutes)
 app.use("/api/auth", userRoutes);
 app.use("/api/messages", messagesRoutes);
 
