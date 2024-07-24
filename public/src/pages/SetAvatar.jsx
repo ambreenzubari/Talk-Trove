@@ -4,11 +4,16 @@ import loader from "../../src/assets/load.gif";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { Buffer } from "buffer";
-import { sendFileToFirebaseRoute, setAvatarRoute } from "../utils/APIRoutes";
+import {
+  allUsersRoute,
+  getUserByIdRoute,
+  sendFileToFirebaseRoute,
+  setAvatarRoute,
+} from "../utils/APIRoutes";
 import "react-toastify/dist/ReactToastify.css";
 import styled from "styled-components";
 import { FaUpload } from "react-icons/fa";
-import DefaultAvatar from "../assets/user.png"
+import DefaultAvatar from "../assets/user.png";
 import Camera from "../assets/camera.png";
 export default function SetAvatar() {
   const toastOptions = {
@@ -35,24 +40,40 @@ export default function SetAvatar() {
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-
       const imageUrl = URL.createObjectURL(file);
       setImageFile(file);
       setUploadedImage(imageUrl);
     } else {
-      console.log('No file selected or file selection was canceled.');
+      console.log("No file selected or file selection was canceled.");
     }
   };
 
+  const deleteAvatar = async () => {
+    setUploadedImage("");
+    let avatarRes = await axios.post(`${setAvatarRoute}/${user._id}`, {
+      uploadedImage,
+    });
+    if (avatarRes.status) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  };
+
+  const removeAvatar = () => {
+    setUploadedImage("");
+    setImageFile("");
+  };
+
   const setProfilePicture = async () => {
-    if (!uploadedImage || uploadedImage == '') {
+    if (!uploadedImage || uploadedImage == "") {
       toast.error("Please select an avatar or upload an image", toastOptions);
       return;
     }
     const formData = new FormData();
-    formData.append('file', imageFile);
+    formData.append("file", imageFile);
 
-    const data = await axios.post(`${sendFileToFirebaseRoute}`, formData,
+    const data = await axios.post(
+      `${sendFileToFirebaseRoute}`,
+      formData,
       // {
       //   headers: {
       //     'Content-Type': 'multipart/form-data',
@@ -61,11 +82,11 @@ export default function SetAvatar() {
 
       {
         headers: {
-          'Content-Type': 'multipart/form-data',
-        }
-      },
+          "Content-Type": "multipart/form-data",
+        },
+      }
     );
-    let avatarImage = data.data.fileUrl
+    let avatarImage = data.data.fileUrl;
     let avatarRes = await axios.post(`${setAvatarRoute}/${user._id}`, {
       avatarImage,
     });
@@ -79,45 +100,62 @@ export default function SetAvatar() {
     }
   };
   useEffect(() => {
-    let tempUser = JSON.parse(localStorage.getItem("user"));
-    setUser(tempUser)
+    getUserData();
 
-    if (localStorage.getItem("token") && user.isAvatarImageSet) {
-      navigate("/");
-    } else if (!localStorage.getItem("token")) {
-      navigate("/login");
-    }
+    // if (localStorage.getItem("token") && user.isAvatarImageSet) {
+    //   navigate("/");
+    // } else if (!localStorage.getItem("token")) {
+    //   navigate("/login");
+    // }
   }, []);
 
+  const getUserData = async () => {
+    let tempUser = JSON.parse(localStorage.getItem("user"));
+    setUser(tempUser);
+    console.log("User, t", tempUser);
+    let token = await localStorage.getItem("token");
+
+    let res = await axios.get(`${getUserByIdRoute}/${tempUser._id}`, {
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("RESPO----", res);
+    if (res.status === 200) {
+      setUser(res.data.user);
+      setUploadedImage(res.data.user.avatarImage);
+      // console.log("Uploaded", uploadedImage)
+    }
+  };
   return (
     <>
       <AvatarContainer>
         <div className="title-container">
           <h1>Select Image for your profile picture</h1>
         </div>
-
         <div>
-          {uploadedImage ? (
+          {/* {uploadedImage ? (
             <div className="uploaded-image-container">
-              <img
-                src={uploadedImage}
-                alt="Uploaded Avatar"
-              />
+              <img src={uploadedImage} alt="Uploaded Avatar" />
             </div>
-          ) : (
-            <div className="uploaded-image-container">
-              <img
-                src={user.avatarImage && user.avatarImage != '' ? user.avatarImage : 'https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158'}
-                alt="Uploaded Avatar"
-              />
-            </div>
-          )}
-          <div style={{
-
-          }
-          }>
+          ) : ( */}
+          <div className="uploaded-image-container">
+            <img
+              src={
+                uploadedImage
+                  ? uploadedImage
+                  : "https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158"
+              }
+              alt="Uploaded Avatar"
+            />
+          </div>
+          {/* )} */}
+          <div style={{}}>
             <div className="camera-container">
-              <img className="camera" onClick={handleCameraClick}
+              <img
+                className="camera"
+                onClick={handleCameraClick}
                 src={Camera}
                 alt="Camera Avatar"
               />
@@ -134,17 +172,29 @@ export default function SetAvatar() {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: 'none' }}
+            style={{ display: "none" }}
             onChange={handleImageUpload}
           />
         </div>
+        {imageFile && (
+          <button className="submit-btn" onClick={setProfilePicture}>
+            Set as profile picture
+          </button>
+        )}
+        {uploadedImage &&
+          !imageFile &&
+          user.avatarImage &&
+          user.avatarImage != "" && (
+            <button className="submit-btn" onClick={deleteAvatar}>
+              Delete Avatar
+            </button>
+          )}
 
-
-        <button className="submit-btn" onClick={setProfilePicture}>
-          Set as profile picture
-        </button>
-
-        <p className="skip">Skip</p>
+        {imageFile && (
+          <button className="submit-btn" onClick={removeAvatar}>
+            Remove Avatar
+          </button>
+        )}
       </AvatarContainer>
       {/* )
       } */}
@@ -161,7 +211,12 @@ const AvatarContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dark background gradient */
+  background: linear-gradient(
+    135deg,
+    #0f2027,
+    #203a43,
+    #2c5364
+  ); /* Dark background gradient */
 
   .loader {
     width: 100px;
@@ -170,7 +225,7 @@ const AvatarContainer = styled.div`
   .title-container {
     h1 {
       color: #ffffff;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
       text-transform: uppercase;
     }
   }
@@ -209,11 +264,11 @@ const AvatarContainer = styled.div`
   }
 
   .upload-container {
-    visibility: hidden;    
+    visibility: hidden;
     align-items: center;
     gap: 1rem;
     color: #ffffff;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
 
     label {
@@ -226,7 +281,7 @@ const AvatarContainer = styled.div`
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #2173A5;
+        background-color: #2173a5;
       }
 
       svg {
@@ -239,29 +294,29 @@ const AvatarContainer = styled.div`
     }
   }
 
-  .skip{
-    color:white;
+  .skip {
+    color: white;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
   }
-    .camera-container{
-       position: absolute;
+  .camera-container {
+    position: absolute;
     margin-top: -29px;
     width: 30px;
     height: 30px;
     background: gray;
     /* padding: 4px; */
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
     overflow: hidden;
     padding: 3px;
     /* margin-right: 31px; */
-    }
-  .camera{
-  width: 20px;
+  }
+  .camera {
+    width: 20px;
     height: 20px;
   }
   .uploaded-image-container {
@@ -291,7 +346,7 @@ const AvatarContainer = styled.div`
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #2173A5;
+      background-color: #2173a5;
     }
   }
 `;

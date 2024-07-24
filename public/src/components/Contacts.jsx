@@ -3,8 +3,11 @@ import { ContactsContainer } from "../styles/ContactsContainer";
 import Logo from "../../src/assets/logo.png";
 import Logout from "./Logout";
 import { FaSearch } from "react-icons/fa";
+import { BsCamera } from "react-icons/bs";
+import { useNavigate, useNavigation } from "react-router-dom";
 
 const Contacts = ({ contacts, currentUser, changeChat }) => {
+  const navigate = useNavigate()
   const [currentSelected, setCurrentSelected] = useState(undefined);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredContacts, setFilteredContacts] = useState(contacts);
@@ -36,7 +39,9 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                 <img
                   src={`${currentUser.avatarImage}`}
                   alt="avatar"
+                  onClick={()=> navigate("/setAvatar")}
                 />
+               
               </div>
               <div className="current-username">
                 <h3>{currentUser.username}</h3>
