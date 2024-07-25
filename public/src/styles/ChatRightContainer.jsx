@@ -18,11 +18,10 @@ export const ChatRightContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-   
   }
-  
+
   .no-message p {
-    font-size: 12px; /* Smaller text size */
+    font-size: 13px; /* Smaller text size */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 4px; /* Padding for better spacing */
@@ -34,15 +33,14 @@ export const ChatRightContainer = styled.div`
     line-height: 1.2; /* Increase line height for better readability */
     font-weight: normal; /* Normal font weight */
   }
-  
-  
+
   .chat-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem;
-    background-color: #1E1E1E;
+    background-color: #1e1e1e;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
     .user-details {
@@ -52,17 +50,17 @@ export const ChatRightContainer = styled.div`
       align-items: center;
       .avatar {
         img {
-           height: 2rem;
-                  width: 2rem;
-            object-fit: cover;
-            border-radius: 50%;
+          height: 4rem;
+          width: 4rem;
+          object-fit: cover;
+          border-radius: 50%;
         }
       }
 
       .username {
         h3 {
           color: white;
-          font-size: 16px;
+          font-size: 18px;
         }
       }
     }
@@ -92,10 +90,9 @@ export const ChatRightContainer = styled.div`
         max-width: 40%;
         overflow-wrap: break-word;
         padding: 1rem;
-        font-size: 14px;
+        font-size: 16px !important;
         border-radius: 1rem;
         color: #d1d1d1;
-        
 
         @media screen and (min-width: 720px) and (max-width: 1080px) {
           max-width: 70%;

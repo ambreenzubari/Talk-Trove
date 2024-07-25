@@ -14,6 +14,7 @@ import styled from "styled-components";
 import { FaUpload } from "react-icons/fa";
 import DefaultAvatar from "../assets/user.png";
 import Camera from "../assets/camera.png";
+import Logo from "../../src/assets/logo.png";
 
 export default function SetAvatar() {
   const toastOptions = {
@@ -139,61 +140,78 @@ export default function SetAvatar() {
   return (
     <>
       <AvatarContainer>
-        <div className="title-container">
-          <h1>Select Image for Your Profile Picture</h1>
-        </div>
-        {isLoading ? (
-          <div className="loader-container">
-            <img src={loader} alt="Loading..." className="loader" />
+        <div className="sub-container"> 
+          <div className="brand">
+            <img src={Logo} alt="Logo" />
           </div>
-        ) : (
-          <>
-            <div className="avatar-section">
-              <div className="uploaded-image-container">
-                <img
-                  src={
-                    uploadedImage
-                      ? uploadedImage
-                      : "https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158"
-                  }
-                  alt="Uploaded Avatar"
-                />
-                <div className="camera-container" onClick={handleCameraClick}>
-                  <img className="camera" src={Camera} alt="Camera Icon" />
+          <div className="title-container">
+            <h1>Select Image for Your Profile Picture</h1>
+          </div>
+          {isLoading ? (
+            <div className="loader-container">
+              <img src={loader} alt="Loading..." className="loader" />
+            </div>
+          ) : (
+            <>
+              <div className="avatar-section">
+                <div className="uploaded-image-container">
+                  <img
+                    src={
+                      uploadedImage
+                        ? uploadedImage
+                        : "https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158"
+                    }
+                    alt="Uploaded Avatar"
+                  />
+                  <div className="camera-container" onClick={handleCameraClick}>
+                    <img className="camera" src={Camera} alt="Camera Icon" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="upload-container">
-              <label htmlFor="file-input">
-                <FaUpload />
-                Upload Image
-              </label>
-              <input
-                id="file-input"
-                type="file"
-                accept="image/*"
-                ref={fileInputRef}
-                style={{ display: "none" }}
-                onChange={handleImageUpload}
-              />
-            </div>
-            {imageFile && (
-              <button className="submit-btn" onClick={setProfilePicture}>
-                Set as Profile Picture
-              </button>
-            )}
-            {uploadedImage && !imageFile && user.avatarImage && (
-              <button className="submit-btn" onClick={deleteAvatar}>
-                Delete Avatar
-              </button>
-            )}
-            {imageFile && (
-              <button className="submit-btn" onClick={removeAvatar}>
-                Remove Avatar
-              </button>
-            )}
-          </>
-        )}
+              <div className="upload-container">
+                <label htmlFor="file-input">
+                  <FaUpload />
+                  Upload Image
+                </label>
+                <input
+                  id="file-input"
+                  type="file"
+                  accept="image/*"
+                  ref={fileInputRef}
+                  style={{ display: "none" }}
+                  onChange={handleImageUpload}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                {imageFile && (
+                  <button className="submit-btn" onClick={setProfilePicture}>
+                    Set as Profile Picture
+                  </button>
+                )}
+                {uploadedImage && !imageFile && user.avatarImage && (
+                  <button className="submit-btn" onClick={deleteAvatar}>
+                    Delete Avatar
+                  </button>
+                )}
+                {imageFile && (
+                  <button className="submit-btn" onClick={removeAvatar}>
+                    Remove Avatar
+                  </button>
+                )}
+              </div>
+
+              <p className="go-to-chat" onClick={() => navigate("/")}>
+                Go to Chat Screen
+              </p>
+            </>
+          )}
+        </div>
       </AvatarContainer>
       <ToastContainer />
     </>
@@ -209,7 +227,37 @@ const AvatarContainer = styled.div`
   align-items: center;
   gap: 2rem;
   background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  .sub-container {
 
+    background: linear-gradient(135deg, #1d1d1d, #2a2a2a);
+    padding: 50px;
+    border-radius: 28px;
+    width: 54vw;
+    max-width: 90vw;
+    height: auto;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+    img {
+      height: 7rem;
+    }
+    h1 {
+      color: #ffffff;
+      font-family: "Poppins", sans-serif;
+      text-transform: uppercase;
+    }
+  }
   .title-container {
     h1 {
       color: #ffffff;
@@ -269,6 +317,7 @@ const AvatarContainer = styled.div`
   .upload-container {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     color: #ffffff;
     font-family: "Poppins", sans-serif;
@@ -302,8 +351,12 @@ const AvatarContainer = styled.div`
     color: #ffffff;
     padding: 1rem 2rem;
     border: none;
+    margin-top: 1rem;
     font-weight: bold;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 0.5rem;
     font-size: 1rem;
     text-transform: uppercase;
@@ -324,5 +377,18 @@ const AvatarContainer = styled.div`
       width: 5rem;
       height: 5rem;
     }
+  }
+
+  .go-to-chat {
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  .go-to-chat:hover {
+    text-decoration: underline;
   }
 `;

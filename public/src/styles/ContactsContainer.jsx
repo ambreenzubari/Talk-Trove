@@ -40,7 +40,7 @@ export const ContactsContainer = styled.div`
   .contacts {
     height:100%;
     padding-right: 0.5rem;
-    padding-bottom:120px;
+    padding-bottom:160px;
     padding-left: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -60,8 +60,8 @@ export const ContactsContainer = styled.div`
       width: 100%;
       cursor: pointer;
       border-radius: 0.2rem;
-      padding-top: 0.4rem;
-      padding-bottom: 0.4rem;
+      padding-top: 13px;
+      padding-bottom:13px;
       padding-left: 0.4rem;
       padding-right: 0.4rem;
       gap: 1rem;
@@ -80,15 +80,21 @@ export const ContactsContainer = styled.div`
       .username {
         h3 {
           font-weight: 500;
-          font-size: 1em;
+          font-size: 18px;
           color: white;
         }
       }
     }
 
     .selected {
-      background-color: #997af0;
+    background-color:#61577d
+      // background-color: #997af0;
     }
+  }
+
+  .contact:hover{
+        background-color: #61577d !important;
+      cursor: pointer
   }
 
   .current-user {
@@ -129,17 +135,35 @@ export const ContactsContainer = styled.div`
 
   .current-user-avatar {
     width: 20%;
+    cursor:pointer;
+    position: relative;
+           border-radius: 50%;
+
     img {
 
       height: 2rem;
       width: 2rem;
       object-fit: cover;
        border-radius: 50%;
+    }
 
+    .camera{
+          display:none
 
     }
   }
 
+  .current-user-avatar:hover{
+  .camera{
+      position: absolute;
+      top: 20%;
+     left: 20%;
+     display: block;˝
+   }
+     img{
+     opacity:0.4}
+  }
+   
   .current-username {
     width: 60%;
     h3 {

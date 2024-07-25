@@ -5,6 +5,7 @@ import { getMessageRoute, sendMessageRoute } from "../utils/APIRoutes";
 import { v4 as uuidv4 } from "uuid";
 import { ChatRightContainer } from "../styles/ChatRightContainer";
 import Logout from "./Logout";
+import global from "../shared/global";
 const ChatsComponent = ({ currentChat, currentUser, socket }) => {
   const scrollRef = useRef();
   const [messages, setMessages] = useState([]);
@@ -103,7 +104,7 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
               </div>
 
               <div className="username">
-                <h3>{currentChat ? currentChat.username : ""}</h3>
+                <h3>{currentChat ? global.capitalizeFirstLetter(currentChat.username) : ""}</h3>
               </div>
             </div>
             <Logout />

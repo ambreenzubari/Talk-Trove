@@ -11,11 +11,11 @@ export const ChatContainer = styled.div`
   gap: 1rem;
 
   .container {
-    height: 100vh;
-    width: 100vw;
+    height: 94vh;
+    width: 94vw;
     background-color: rgba(0, 0, 0, 0.7);
     display: grid;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 22% 78%;
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);

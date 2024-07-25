@@ -5,7 +5,7 @@ import Logout from "./Logout";
 import { FaSearch } from "react-icons/fa";
 import { BsCamera } from "react-icons/bs";
 import { useNavigate, useNavigation } from "react-router-dom";
-
+import Global from "../shared/global";
 const Contacts = ({ contacts, currentUser, changeChat }) => {
   const navigate = useNavigate();
   const [currentSelected, setCurrentSelected] = useState(undefined);
@@ -19,7 +19,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
         contact.username.toLowerCase().includes(searchQuery.toLowerCase())
       )
     );
-    console.log("Filered Contacts", filteredContacts)
+    console.log("Filered Contacts", filteredContacts);
   }, [searchQuery, contacts]);
 
   const changeCurrentChat = (index, contact) => {
@@ -37,7 +37,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
         <ContactsContainer>
           <div>
             <div className="current-user">
-              <div className="current-user-avatar">
+              <div className="current-user-avatar" onClick={() => navigate("/setAvatar")}>
                 <img
                   src={`${
                     currentUser.avatarImage && currentUser.avatarImage != ""
@@ -45,11 +45,14 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                       : "https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158"
                   }`}
                   alt="avatar"
-                  onClick={() => navigate("/setAvatar")}
+                  
                 />
+                <div className="camera">
+                  <BsCamera color="#fff"/>
+                </div>
               </div>
               <div className="current-username">
-                <h3>{currentUser.username}</h3>
+                <h3>{Global.capitalizeFirstLetter(currentUser.username)}</h3>
               </div>
               <div className="logout">
                 <Logout />
@@ -68,6 +71,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
                 type="text"
                 placeholder="Search User"
                 name="email"
+                autoComplete="off"
                 onChange={handleChange}
                 style={{ paddingLeft: "40px" }} // Adjust the padding to accommodate the icon
               />
@@ -83,8 +87,7 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
               />
             </div>
           </div>
-
-q
+          q
           <div className="contacts">
             {filteredContacts.map((contact, index) => (
               <div
@@ -105,18 +108,11 @@ q
                   />
                 </div>
                 <div className="username">
-                  <h3>{contact.username}</h3>
+                  <h3>{Global.capitalizeFirstLetter(contact.username)}</h3>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* <div>
-            <div className="brand">
-              <img src={Logo} alt="logo" />
-              <h3>TalkTrove</h3>
-            </div>
-          </div> */}
         </ContactsContainer>
       )}
     </>
