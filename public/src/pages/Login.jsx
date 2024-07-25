@@ -93,7 +93,12 @@ function Login() {
           <button type="submit">
             {loading ? (
               <div className="loader">
-                <Loader type="spinner-default" bgColor={"#fff"} color={"#fff"} size={20} />
+                <Loader
+                  type="spinner-default"
+                  bgColor={"#fff"}
+                  color={"#fff"}
+                  size={20}
+                />
               </div>
             ) : (
               "Login"

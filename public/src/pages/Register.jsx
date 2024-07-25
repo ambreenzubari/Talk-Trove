@@ -28,7 +28,7 @@ function Register() {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      navigate("/");
+      navigate("/setAvatar");
     }
   }, []);
   const handleSubmit = async (event) => {

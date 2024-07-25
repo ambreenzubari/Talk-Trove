@@ -36,9 +36,6 @@ export const ContactsContainer = styled.div`
       font-size: 1.5rem;
     }
   }
- .current-user-avatar img{
-   border-radius: 50%;
- } 
 
   .contacts {
     height:100%;
@@ -73,7 +70,10 @@ export const ContactsContainer = styled.div`
       transition: 0.5s ease-in-out;
       .avatar {
         img {
-          height: 2.6rem;
+            height: 2rem;
+            width: 2rem;
+            object-fit: cover;
+            border-radius: 50%;
         }
       }
 
@@ -133,7 +133,9 @@ export const ContactsContainer = styled.div`
 
       height: 2rem;
       width: 2rem;
-                  object-fit: cover
+      object-fit: cover;
+       border-radius: 50%;
+
 
     }
   }
@@ -166,7 +168,8 @@ export const ContactsContainer = styled.div`
           img {
             height: 2rem;
                   width: 2rem;
-            object-fit: cover
+            object-fit: cover;
+            border-radius: 50%;
           }
         }
         .username {

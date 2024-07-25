@@ -18,16 +18,19 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
     if (currentUser && currentChat) {
       let token = localStorage.getItem("token");
 
-      const response = await axios.post(getMessageRoute, {
-        from: currentUser._id,
-        to: currentChat._id,
-      },
-      {
-        headers: {
-          "x-auth-token": token,
-          "Content-Type": "application/json",
+      const response = await axios.post(
+        getMessageRoute,
+        {
+          from: currentUser._id,
+          to: currentChat._id,
         },
-      });
+        {
+          headers: {
+            "x-auth-token": token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setMessages(response.data);
     }
   };
@@ -87,7 +90,12 @@ const ChatsComponent = ({ currentChat, currentUser, socket }) => {
                 <img
                   src={
                     currentChat
-                      ? `data:image/svg+xml;base64,${currentChat.avatarImage}`
+                      ? `${
+                          currentChat.avatarImage &&
+                          currentChat.avatarImage != ""
+                            ? currentChat.avatarImage
+                            : "https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158"
+                        }`
                       : ""
                   }
                   alt="avatar"

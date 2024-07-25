@@ -7,17 +7,19 @@ import { BsCamera } from "react-icons/bs";
 import { useNavigate, useNavigation } from "react-router-dom";
 
 const Contacts = ({ contacts, currentUser, changeChat }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [currentSelected, setCurrentSelected] = useState(undefined);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredContacts, setFilteredContacts] = useState(contacts);
 
   useEffect(() => {
+    console.log("Contacts", contacts);
     setFilteredContacts(
       contacts.filter((contact) =>
         contact.username.toLowerCase().includes(searchQuery.toLowerCase())
       )
     );
+    console.log("Filered Contacts", filteredContacts)
   }, [searchQuery, contacts]);
 
   const changeCurrentChat = (index, contact) => {
@@ -37,11 +39,14 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
             <div className="current-user">
               <div className="current-user-avatar">
                 <img
-                  src={`${currentUser.avatarImage}`}
+                  src={`${
+                    currentUser.avatarImage && currentUser.avatarImage != ""
+                      ? currentUser.avatarImage
+                      : "https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158"
+                  }`}
                   alt="avatar"
-                  onClick={()=> navigate("/setAvatar")}
+                  onClick={() => navigate("/setAvatar")}
                 />
-               
               </div>
               <div className="current-username">
                 <h3>{currentUser.username}</h3>
@@ -52,7 +57,11 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
             </div>
             <div
               className="searchContainer"
-              style={{ position: "relative", display: "inline-block", width: "100%" }}
+              style={{
+                position: "relative",
+                display: "inline-block",
+                width: "100%",
+              }}
             >
               <input
                 className="search-input"
@@ -75,16 +84,23 @@ const Contacts = ({ contacts, currentUser, changeChat }) => {
             </div>
           </div>
 
+q
           <div className="contacts">
             {filteredContacts.map((contact, index) => (
               <div
-                className={`contact ${index === currentSelected ? "selected" : ""}`}
+                className={`contact ${
+                  index === currentSelected ? "selected" : ""
+                }`}
                 key={index}
                 onClick={() => changeCurrentChat(index, contact)}
               >
                 <div className="avatar">
                   <img
-                    src={`${contact.avatarImage}`}
+                    src={`${
+                      contact.avatarImage && contact.avatarImage != ""
+                        ? contact.avatarImage
+                        : "https://firebasestorage.googleapis.com/v0/b/talk-trove-aa698.appspot.com/o/user.png?alt=media&token=51ce9f15-d783-456f-807c-423e81b7b158"
+                    }`}
                     alt="avatar"
                   />
                 </div>

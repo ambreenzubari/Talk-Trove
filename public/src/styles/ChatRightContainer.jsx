@@ -52,8 +52,10 @@ export const ChatRightContainer = styled.div`
       align-items: center;
       .avatar {
         img {
-          height: 2.5rem;
-          border-radius: 50%;
+           height: 2rem;
+                  width: 2rem;
+            object-fit: cover;
+            border-radius: 50%;
         }
       }
 
@@ -90,7 +92,7 @@ export const ChatRightContainer = styled.div`
         max-width: 40%;
         overflow-wrap: break-word;
         padding: 1rem;
-        font-size: 1.1rem;
+        font-size: 14px;
         border-radius: 1rem;
         color: #d1d1d1;
         
