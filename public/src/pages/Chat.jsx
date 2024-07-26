@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChatContainer } from "../styles/ChatContainer";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { allUsersRoute, host } from "../utils/APIRoutes";
+import { allUsersRoute, getUserByIdRoute, host } from "../utils/APIRoutes";
 import Contacts from "../components/Contacts";
 import ChatsComponent from "../components/Chat";
 
@@ -20,8 +20,7 @@ function Chat() {
     if (!localStorage.getItem("user")) {
       navigate("/login");
     } else {
-      setCurrentUser(JSON.parse(localStorage.getItem("user")));
-      setIsLoaded(true);
+      getUserData();
     }
   }, []);
 
@@ -36,6 +35,24 @@ function Chat() {
     fetchUsers();
   }, [currentUser]);
 
+  const getUserData = async () => {
+    let tempUser = JSON.parse(localStorage.getItem("user"));
+
+    let token = await localStorage.getItem("token");
+
+    let res = await axios.get(`${getUserByIdRoute}/${tempUser._id}`, {
+      headers: {
+        "x-auth-token": token,
+        "Content-Type": "application/json",
+      },
+    });
+    console.log("RESPO----", res);
+    if (res.status === 200) {
+      setCurrentUser(res.data.user);
+      setIsLoaded(true);
+
+    }
+  };
   const fetchUsers = async () => {
     if (currentUser && currentUser._id) {
       if (currentUser) {
@@ -50,7 +67,6 @@ function Chat() {
           setContacts(data.data.users);
         }
       }
-     
     }
   };
 

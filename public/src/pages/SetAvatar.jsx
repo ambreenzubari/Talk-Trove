@@ -49,12 +49,13 @@ export default function SetAvatar() {
 
   const deleteAvatar = async () => {
     setIsLoading(true);
-    setUploadedImage("");
 
     try {
       let avatarRes = await axios.post(`${setAvatarRoute}/${user._id}`, {});
       if (avatarRes.data.isSet) {
         localStorage.setItem("user", JSON.stringify(user));
+        setUploadedImage("");
+
         // navigate("/");
         toast.success("Avatar deleted successfully", toastOptions);
       }
